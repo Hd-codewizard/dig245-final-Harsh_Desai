@@ -4,16 +4,56 @@
     <!-- meta tags, links to css, etc. -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Trips-a'Hoy - Harsh Desai</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <title>Trips A'Hoy - Harsh Desai</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     <!-- visible content goes here -->
-	<h1>Final Project</h1>
-	<p>See README.md for info</p>
+   <div class="container">
+    <div class="row">
+        <div class="col">
+            <h1> Trips A'hoy</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2> Your One Stop Trip planner. As we believe, "Don't let Weather play a spoilsport"</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>All you need to know is where you're off to and we got your plans covered. Just enter a a place, city or address and 
+            a radius you are comfortable travelling and treat yourself with some great activities based on the weather forcast nearby</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="text" id="location" placeholder="e.g, New York city, NY" >
+            <label for="location">Enter the location here!</label>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="range" id="radius" min="1" max="50" value="10">
+            <label for="radius">Enter the Radius here!</label>
+        </div>
+    </div>
+    <div class="row">
+        <button onclick="findActivities()">Find some Activities!!</button>
+    </div>
+    <div class="row">
+        <div id="map"></div>
+    </div>
+   </div>
 
     <!-- load javascript after the page elements render -->
-    <script src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+     <script src="assets/js/main.js"></script>
+
 </body>
 </html>
