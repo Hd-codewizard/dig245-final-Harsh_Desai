@@ -47,23 +47,19 @@ async function getWeather(lat, lon){
     }
 }
 // Get Places using the Openstreetmap Overpass API
-async function getPlaces(lat,lon,radius,acts){
-    
+async function getPlaces(lat,lon,radius,acts){ 
     try{
         places = {};
         for(let i =0; i<acts.length; i++){
-            const query = `
-                [out:json][timeout:90];
-                node(around:${radius},${lat},${lon})[${acts[i]}];
-                out body;
-            `;
+            const query = `[out:json][timeout:90];node(around:${radius},${lat},${lon})[${acts[i]}];out body;`;
             var result = await fetch(overpassAPI,{method:  "POST",
                 body: "data=" + encodeURIComponent(query),
             })
             .then(
                 (data)=>data.json()
             );
-            
+            console.log(query);
+            console.log(result);
         }
       }
     catch(error){
