@@ -49,18 +49,34 @@ async function getWeather(lat, lon){
 // Get Places using the Openstreetmap Overpass API
 async function getPlaces(lat,lon,radius,acts){ 
     try{
-        places = {};
+        const places1 = [];
         for(let i =0; i<acts.length; i++){
-            const query = `[out:json][timeout:90];node(around:${radius},${lat},${lon})[${acts[i]}];out body;`;
+            const query = `[out:json][timeout:90];node(around:${radius*1000},${lat},${lon})[${acts[i]}];out body;`;
             var result = await fetch(overpassAPI,{method:  "POST",
                 body: "data=" + encodeURIComponent(query),
-            })
-            .then(
-                (data)=>data.json()
-            );
+            });
+            let data = await result.json();
+            if(data.length === 0){
+                return;
+            }
             console.log(query);
-            console.log(result);
+            if(data.elements.length === 0){
+                continue;
+            }
+            else{
+                console.log("DATA", data.elements.length);
+                for(let j = 0; j < data.elements.length;j++){
+                    const place ={
+                        lat: data.elements[j].lat,
+                        lon: data.elements[j].lon,
+                        name: data.elements[j].tags.name,
+                        type:data.elements[j].tags.leisure || data.elements[0].tags.amenity || data.elements[0].tags.natural,
+                    }
+                    places1.push(place);
+                }
+            }
         }
+        return places1;
       }
     catch(error){
         console.error("Error fetching activities from Overpass API:", error);
@@ -71,7 +87,6 @@ async function getPlaces(lat,lon,radius,acts){
 async function displayLocations(places){
     for(let i = 0; i<places.length; i++){
         const place_current = places[i];
-        console.log('hello');
         L.marker([place_current.lat, place_current.lon]).addTo(map).bindPopup(`<b>${place_current.name}</b><br>Type: ${place_current.type}`);
     }
 }
@@ -89,7 +104,7 @@ async function findActivities(){
         return;
     }
     const{lat,lon} = geoCoordinates;
-    map.setView([lat,lon],12);
+    map.setView([lat,lon],10);
     const weather_forecast = await getWeather(lat,lon);
     if(!weather_forecast){
         return;
@@ -103,7 +118,8 @@ async function findActivities(){
     }
     console.log("Activites",weather_acts);
     const RADIUS = document.getElementById("radius").value;
-    const locations = getPlaces(lat,lon,RADIUS,weather_acts);
+    const locations = await getPlaces(lat,lon,RADIUS,weather_acts);
+    console.log("Weather: " , locations);
     if(locations.length != 0){
         displayLocations(locations);
     }
