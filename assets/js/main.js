@@ -3,12 +3,14 @@ const weatherAPI = 'https://api.weather.gov/points/';
 const overpassAPI = 'https://overpass-api.de/api/interpreter';
 const nominatimAPI = 'https://nominatim.openstreetmap.org/search';
 
-//Initialize the map using Leaflet
+//Initialize the map using Leaflet and a marker group
 const map = L.map('map').setView([35.5, -80.85], 13);
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
-
+// Making a marker group
+const markerGroup= L.layerGroup().addTo(map);
+// Making a custom marker based on weather
 //Get GeoLocation of a place from Nominatim API
 async function getLocation(location){
     const link = `${nominatimAPI}?q=${encodeURIComponent(location)}&format=json&limit=1`;
@@ -87,8 +89,13 @@ async function getPlaces(lat,lon,radius,acts){
 async function displayLocations(places){
     for(let i = 0; i<places.length; i++){
         const place_current = places[i];
-        L.marker([place_current.lat, place_current.lon]).addTo(map).bindPopup(`<b>${place_current.name}</b><br>Type: ${place_current.type}`);
+        const marker = L.marker([place_current.lat, place_current.lon]).addTo(map).bindPopup(`<b>${place_current.name}</b><br>Type: ${place_current.type}`);
+        marker.addTo(markerGroup);
     }
+}
+function displayRange(){
+    var range = document.getElementById("radius").value;
+    document.getElementById('output').innerHTML = range + " KM";
 }
 //A array that represents indoor and outdoor activities with prompts for Overpass API
 const activityCategories = {
@@ -97,6 +104,7 @@ const activityCategories = {
 };
 // The main fucntion of the program. Uses Overpass API to find places and put them on a map
 async function findActivities(){
+    displayRange();
     const place = document.getElementById("location");
     const place1 = place.value;
     const geoCoordinates = await getLocation(place1);
@@ -121,7 +129,10 @@ async function findActivities(){
     const locations = await getPlaces(lat,lon,RADIUS,weather_acts);
     console.log("Weather: " , locations);
     if(locations.length != 0){
-        displayLocations(locations);
+        if(markerGroup.length != 0){
+            markerGroup.clearLayers();
+        }
+        displayLocations(locations); 
     }
     else{
         return[];
