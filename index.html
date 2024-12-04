@@ -29,7 +29,7 @@
                         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup" >
                             <div class="navbar-nav">
                                 <a class="link nav-link" href="#Content" style="margin-right: 40px; color: black;">MAP</a>
-                                <a class="link nav-link" href="#Content" style="margin-right: 40px; color: black;">TRIP</a>
+                                <a class="link nav-link" href="#Trip" style="margin-right: 40px; color: black;">TRIP</a>
                                 <a class="link nav-link" href="#Home" style="margin-right: 40px; color: black;">HOME</a>
                             </div>
                         </div>
@@ -81,40 +81,116 @@
             <div class="col-1 d-block d-md-none d-lg-none" >
             </div>
             <div class="col d-block d-md-none d-lg-none">
-                <a href="#Home"><img src="assets/img/BTN-1.png" style="width:100%" alt=""></a>
+                <a href="#Trip"><img src="assets/img/BTN-1.png" style="width:100%" alt=""></a>
             </div>
             <div class="col-6 d-none d-md-block d-lg-none">
-                <a href="#Home"><img src="assets/img/BTN-1.png" style="width: 90%;" alt=""></a>
+                <a href="#Trip"><img src="assets/img/BTN-1.png" style="width: 90%;" alt=""></a>
             </div>
             <div class="col-6 d-none d-md-none d-lg-block">
-                <a href="#Home"><img src="assets/img/BTN-1.png" style="width: 70%;" alt=""></a>
+                <a href="#Trip"><img src="assets/img/BTN-1.png" style="width: 70%;" alt=""></a>
             </div>
             <div class="col-2 d-none d-md-block" >
             </div>
         </div>
     </div>
-    <div class="row" style="margin-top: 100px;margin-bottom: 100px;">
+    <div class="row" style="margin-top: 100px;margin-bottom: 100px;" id="Trip">
     </div>
-    <div class="row">
-        <div class="col">
-            <input type="text" id="location" placeholder="e.g, New York city, NY" >
-            <label for="location">Enter the location here!</label>
-        </div> 
-    </div>
-    <div class="row">
-        <div class="col">
-            <input type="range" id="radius" min="1" max="50" value="10">
-            <label for="radius">Enter the Radius here!</label>
-            <output id="output"></output>
+    <div class="container-fluid" style="background-color: #A5FAFF; width: 80%;padding-top: 7px;padding-bottom: 10px;">
+        <div class="row">
+            <div class="col-1">
+
+            </div>
+            <div class="col">
+                <label for="location">Enter the location here!</label>
+                <input type="text" id="location" placeholder="e.g, New York city, NY" style="width: 100%;font-family: Arsenal SC,serif;
+                font-weight: 400;
+                font-style: normal;">
+            </div> 
+            <div class="col-1">
+
+            </div>
         </div>
     </div>
-    <div class="row">
-        <button onclick="findActivities()">Find some Activities!!</button>
+    <div class="mb-5">
+    </div>
+    <div class="container-fluid" style="background-color: #A5FAFF; width: 80%;padding-top: 7px;padding-bottom: 5px;" >
+        <div class="row">
+            <div class="col-1">
+
+            </div>
+            <div class="col">
+                <label for="radius">Enter the Radius here!</label>
+                <input type="range" id="radius" min="1" max="50" value="10" style="width: 100%;">
+                <output id="output" style="align-items: center;text-align: center;"></output>
+            </div>
+            <div class="col-1">
+
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+    </div>
+    <div class="row" >
+        <div class="col"></div>
+        <div class="col">
+            <button onclick="findActivities()" style="width: 100%;">Find some Activities!!</button>
+        </div>
+        <div class="col"> </div>
+    </div>
+    <div class="mb-3">
+    </div>
+    <div class="container-fluid" style="width: 70%; background-color: #D4FBFD;">
+        <div id="w-para">
+        </div>
+    </div>
+    <div class="mb-5">
     </div>
     <div class="row">
-        <div class="col">
-            <div id="map"></div>
+        <div class="row">
+            <div class="col-4 d-none d-md-block">
+            </div>
+            <div class="col-1 d-block d-md-none d-lg-none" >
+            </div>
+            <div class="col d-block d-md-none d-lg-none">
+                <a href="#map"><img src="assets/img/BTN-2.png" style="width:100%" alt=""></a>
+            </div>
+            <div class="col-6 d-none d-md-block d-lg-none">
+                <a href="#map"><img src="assets/img/BTN-2.png" style="width: 90%;" alt=""></a>
+            </div>
+            <div class="col-6 d-none d-md-none d-lg-block">
+                <a href="#map"><img src="assets/img/BTN-2.png" style="width: 70%;" alt=""></a>
+            </div>
+            <div class="col-2 d-none d-md-block" >
+            </div>
         </div>
+    </div>
+    <div class="row" style="margin-top: 100px;margin-bottom: 100px;" id="Trip">
+    </div>
+    <div class="row">
+        <div id="map"></div>
+    </div>
+    <div class="mb-3">
+    </div>
+    <div class="row">
+        <div class="row">
+            <div class="col-4 d-none d-md-block">
+            </div>
+            <div class="col-1 d-block d-md-none d-lg-none" >
+            </div>
+            <div class="col d-block d-md-none d-lg-none">
+                <a href="#Home"><img src="assets/img/BTN-3.png" style="width:100%" alt=""></a>
+            </div>
+            <div class="col-6 d-none d-md-block d-lg-none">
+                <a href="#Home"><img src="assets/img/BTN-3.png" style="width: 90%;" alt=""></a>
+            </div>
+            <div class="col-6 d-none d-md-none d-lg-block">
+                <a href="#Home"><img src="assets/img/BTN-3.png" style="width: 70%;" alt=""></a>
+            </div>
+            <div class="col-2 d-none d-md-block" >
+            </div>
+        </div>
+    </div>
+    <div class="mb-5">
     </div>
    </div>
 
