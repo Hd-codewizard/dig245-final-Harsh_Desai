@@ -102,9 +102,49 @@ const activityCategories = {
     outdoor: ["leisure=park", "tourism=zoo", "natural=beach", "leisure=pitch"], // Parks, Zoos, Beaches, Sports fields
     indoor: ["amenity=cafe", "amenity=museum", "leisure=bowling_alley"]        // Cafes, Museums, Bowling Alleys
 };
+async function displayPic(){
+    
+}
+async function forecastPara(){
+    const loc = document.getElementById("location").value;
+    const geoCoor = await getLocation(loc);
+    if(!geoCoor){
+        return;
+    }
+    const{lat,lon} = geoCoor;
+    const weather_forecast = await getWeather(lat,lon);
+    if(!weather_forecast){
+        return;
+    }
+    if(weather_forecast.includes("sun") || weather_forecast.includes("clear")){
+        document.getElementById("w-para").innerHTML =`<p>Forecast shows that the weather is Sunny and Clear. So have some fun in the exciting outdoors. 
+            Please reload the page a couple of times and try again in case of alerts. 
+            <br>
+            <strong>Note:</strong> This Forecast Is For The Next 1-3 Hours. Enjoy Your Trip!!</p>`
+    }
+    else if(weather_forecast.includes("cloud")){
+        document.getElementById("w-para").innerHTML =`<p>Forecast shows that the weather is Cloudy. So we reccomed you to enjoy some indoor activities while you also have the option of some outdoor fun. 
+            Please reload the page a couple of times and try again in case of alerts. 
+            <br>
+            <strong>Note:</strong> This Forecast Is For The Next 1-3 Hours. Enjoy Your Trip!!</p>`
+    }
+    else if(weather_forecast.includes("snow")){
+        document.getElementById("w-para").innerHTML =`<p>Forecast shows that the weather is Snowy. So we reccomed you to enjoy some indoor activities while you also have the option to experience some snow. 
+        Please reload the page a couple of times and try again in case of alerts. 
+        <br>
+        <strong>Note:</strong> This Forecast Is For The Next 1-3 Hours. Enjoy Your Trip!!</p>`
+    }
+    else if(weather_forecast.includes("rain")){
+        document.getElementById("w-para").innerHTML =`<p>Forecast shows that the weather is Rainy. So we strongly reccomed you to enjoy great some indoor activities. 
+            Please reload the page a couple of times and try again in case of alerts. 
+            <br>
+            <strong>Note:</strong> This Forecast Is For The Next 1-3 Hours. Enjoy Your Trip!!</p>`
+    }
+}   
 // The main fucntion of the program. Uses Overpass API to find places and put them on a map
 async function findActivities(){
     displayRange();
+    forecastPara();
     const place = document.getElementById("location");
     const place1 = place.value;
     const geoCoordinates = await getLocation(place1);
