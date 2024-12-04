@@ -10,3 +10,24 @@ body{
 .navbar-toggler{
     background-color: azure;
 }
+p{
+    font-family: "Arsenal SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    font-size: x-large;
+}
+.navbar-nav{
+  font-family: "Arsenal SC", serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+  font-size: larger;
+
+}
+h1{
+    font-family: "Arsenal SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}
