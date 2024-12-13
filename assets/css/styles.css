@@ -5,7 +5,7 @@
     width: 100%;
 }
 body{
-    background-color: #FCFFC2;
+    background-color: #f1d79f;
 }
 .navbar-toggler{
     background-color: azure;
@@ -14,8 +14,9 @@ p{
     font-family: "Arsenal SC", serif;
     font-weight: 400;
     font-style: normal;
-    text-align: center;
-    font-size: x-large;
+    text-align: left;
+    font-size: large;
+    
 }
 .navbar-nav{
   font-family: "Arsenal SC", serif;
@@ -48,9 +49,11 @@ label{
     width: 100%;
     font-size: x-large;
 }
-.full-width-img {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw; /* Full width of the viewport */
+
+button{
+    font-family: "Arsenal SC", serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    font-size: x-large;
 }
