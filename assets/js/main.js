@@ -87,7 +87,7 @@ async function getPlaces(lat,lon,radius,acts){
 }   
 const customIcon = L.icon({
     iconUrl: 'assets/img/icon.png', // Path to your custom icon image
-    iconSize: [32, 32], // Size of the icon [width, height]
+    iconSize: [27, 32], // Size of the icon [width, height]
     iconAnchor: [16, 32], // Anchor point of the icon (center bottom)
     popupAnchor: [0, -32] // Anchor point of the popup relative to the icon
 });
@@ -95,7 +95,7 @@ const customIcon = L.icon({
 async function displayLocations(places){
     for(let i = 0; i<places.length; i++){
         const place_current = places[i];
-        const marker = L.marker([place_current.lat, place_current.lon],{ icon: customIcon }).addTo(map).bindPopup(`<b>${place_current.name}</b><br>Type: ${place_current.type}`);
+        const marker = L.marker([place_current.lat, place_current.lon],{ icon: customIcon }).addTo(map).bindPopup(`<b>${place_current.name}</b><br>Type: ${place_current.type}<br><a href="https://www.google.com/maps?q=${place_current.lat},${place_current.lon}" target="_blank">Open in Google Maps</a>`);
         marker.addTo(markerGroup);
     }
 }
