@@ -85,11 +85,17 @@ async function getPlaces(lat,lon,radius,acts){
         return [];
     }
 }   
+const customIcon = L.icon({
+    iconUrl: 'assets/img/icon.png', // Path to your custom icon image
+    iconSize: [32, 32], // Size of the icon [width, height]
+    iconAnchor: [16, 32], // Anchor point of the icon (center bottom)
+    popupAnchor: [0, -32] // Anchor point of the popup relative to the icon
+});
 // Display the places on the initialized LeafLet Map
 async function displayLocations(places){
     for(let i = 0; i<places.length; i++){
         const place_current = places[i];
-        const marker = L.marker([place_current.lat, place_current.lon]).addTo(map).bindPopup(`<b>${place_current.name}</b><br>Type: ${place_current.type}`);
+        const marker = L.marker([place_current.lat, place_current.lon],{ icon: customIcon }).addTo(map).bindPopup(`<b>${place_current.name}</b><br>Type: ${place_current.type}`);
         marker.addTo(markerGroup);
     }
 }
@@ -102,9 +108,6 @@ const activityCategories = {
     outdoor: ["leisure=park", "tourism=zoo", "natural=beach", "leisure=pitch"], // Parks, Zoos, Beaches, Sports fields
     indoor: ["amenity=cafe", "amenity=museum", "leisure=bowling_alley"]        // Cafes, Museums, Bowling Alleys
 };
-async function displayPic(){
-    
-}
 async function forecastPara(){
     const loc = document.getElementById("location").value;
     const geoCoor = await getLocation(loc);
@@ -118,29 +121,31 @@ async function forecastPara(){
     }
     if(weather_forecast.includes("sun") || weather_forecast.includes("clear")){
         document.getElementById("w-para").innerHTML =`<p>Forecast shows that the weather is Sunny and Clear. So have some fun in the exciting outdoors. 
-            Please reload the page a couple of times and try again in case of alerts. 
-            <br>
+            Please reload the page a couple of times and try again in case of alerts. Scroll to see some suggestions on the map
             <strong>Note:</strong> This Forecast Is For The Next 1-3 Hours. Enjoy Your Trip!!</p>`
+        document.getElementById("w-pic").innerHTML = `<img src="assets/img/SUN.png" alt="" style="width: 100%; border-radius: 10px;"></img>`
     }
     else if(weather_forecast.includes("cloud")){
         document.getElementById("w-para").innerHTML =`<p>Forecast shows that the weather is Cloudy. So we reccomed you to enjoy some indoor activities while you also have the option of some outdoor fun. 
-            Please reload the page a couple of times and try again in case of alerts. 
-            <br>
+            Please reload the page a couple of times and try again in case of alerts. Scroll to see some suggestions on the map
             <strong>Note:</strong> This Forecast Is For The Next 1-3 Hours. Enjoy Your Trip!!</p>`
+        document.getElementById("w-pic").innerHTML = `<img src="assets/img/CLOUDY.png" alt="" style="width: 100%; border-radius: 10px;"></img>`
     }
     else if(weather_forecast.includes("snow")){
         document.getElementById("w-para").innerHTML =`<p>Forecast shows that the weather is Snowy. So we reccomed you to enjoy some indoor activities while you also have the option to experience some snow. 
-        Please reload the page a couple of times and try again in case of alerts. 
-        <br>
+        Please reload the page a couple of times and try again in case of alerts. Scroll to see some suggestions on then map
         <strong>Note:</strong> This Forecast Is For The Next 1-3 Hours. Enjoy Your Trip!!</p>`
+        document.getElementById("w-pic").innerHTML = `<img src="assets/img/SNOW-2.png" alt="" style="width: 100%; border-radius: 10px;"></img>`
     }
     else if(weather_forecast.includes("rain")){
         document.getElementById("w-para").innerHTML =`<p>Forecast shows that the weather is Rainy. So we strongly reccomed you to enjoy great some indoor activities. 
-            Please reload the page a couple of times and try again in case of alerts. 
-            <br>
+            Please reload the page a couple of times and try again in case of alerts. Scroll to see some suggestions on the map
             <strong>Note:</strong> This Forecast Is For The Next 1-3 Hours. Enjoy Your Trip!!</p>`
+        document.getElementById("w-pic").innerHTML = `<img src="assets/img/rain-2.png" alt="" style="width: 100%; border-radius: 10px;"></img>`
     }
 }   
+
+
 // The main fucntion of the program. Uses Overpass API to find places and put them on a map
 async function findActivities(){
     displayRange();
