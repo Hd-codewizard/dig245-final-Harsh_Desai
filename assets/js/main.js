@@ -141,7 +141,7 @@ async function forecastPara(){
         document.getElementById("w-para").innerHTML =`<p>Forecast shows that the weather is Rainy. So we strongly reccomed you to enjoy great some indoor activities. 
             Please reload the page a couple of times and try again in case of alerts. Scroll to see some suggestions on the map
             <strong>Note:</strong> This Forecast Is For The Next 1-3 Hours. Enjoy Your Trip!!</p>`
-        document.getElementById("w-pic").innerHTML = `<img src="assets/img/rain-2.png" alt="" style="width: 100%; border-radius: 10px;"></img>`
+        document.getElementById("w-pic").innerHTML = `<img src="assets/img/rain2.png" alt="" style="width: 100%; border-radius: 10px;"></img>`
     }
 }   
 
